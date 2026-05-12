@@ -10,5 +10,9 @@ def extract_session_id(session_str: str):
     
     return ""
 
+def get_str_from_food_dict(food_dict : dict):
+    return ", ".join([f"{int(value)} {key}" for key , value in food_dict.items()])
+
 if __name__ == "__main__":
-    print(extract_session_id("projects/first-agent-opba/agent/sessions/b88ff248-b608-48ce-7304-c3c8e86f167f/contexts/ongoing-tracking"))
+    # print(extract_session_id("projects/first-agent-opba/agent/sessions/b88ff248-b608-48ce-7304-c3c8e86f167f/contexts/ongoing-tracking"))
+    print(get_str_from_food_dict({"burger": 2 , "fries": 3}))

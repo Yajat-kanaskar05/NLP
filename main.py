@@ -47,9 +47,10 @@ def add_to_order(parameters:dict , session_id: str):
             in_progress_order[session_id] = current_food_dict
         else:
             in_progress_order[session_id] = new_food_dict   
+        
 
-
-        fulfillment_text = f"recieved food item {food_items} with quantity {quantities}"
+        order_string = generic_helper.get_str_from_food_dict(in_progress_order[session_id])
+        fulfillment_text = f"So far you have : {order_string}. Do you want anything else?"
     
     return JSONResponse(content={
             "fulfillmentText": fulfillment_text 
@@ -57,8 +58,11 @@ def add_to_order(parameters:dict , session_id: str):
 
 
 
-def complete_order():
-    pass
+def complete_order(parameters : dict , session_id : str):
+    if session_id not in in_progress_order:
+        fulfillment_text = "I'm having trouble finding your order. Sorry! Can you place a new order?" 
+    else:
+        order = in_progress_order[session_id]
 
 def remove_from_order():
     pass
